@@ -18,6 +18,7 @@
                         :submit-image-icon-size="submitImageIconSize"
                         :send-images="sendImages"
                         :accept-image-types="acceptImageTypes"
+                        :templateMessage="templateMessage"
                         @onImageSelected="onImageSelected"
                         @onMessageSubmit="onMessageSubmit"
                         @onType="onType"/>
@@ -42,6 +43,11 @@
             participants: {
                 type: Array,
                 required: true
+            },
+            templateMessage: {
+                type: String,
+                required: false,
+                default: ''
             },
             messages: {
                 type: Array,
@@ -183,6 +189,9 @@
             },
             chatTitle() {
                 this.setChatTitle(this.chatTitle);
+            },
+            templateMessage() {
+                this.setTemplateMessage(this.templateMessage);
             }
         },
         beforeCreate() {
@@ -201,7 +210,8 @@
                 'setMyself',
                 'setMessages',
                 'setPlaceholder',
-                'setChatTitle'
+                'setChatTitle',
+                'setTemplateMessage'
             ]),
             onClose: function(){
                 this.$emit("onClose");

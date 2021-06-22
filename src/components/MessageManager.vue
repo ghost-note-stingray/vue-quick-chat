@@ -3,10 +3,11 @@
         <div class="message-text-box">
             <div ref="userInput" class="message-input" :placeholder="placeholder"
                  tabIndex="0" contenteditable="true"
-                 @input="handleType" @keyup.enter.exact="sendMessage"></div>
+                 @input="handleType"></div>
         </div>
         <div class="container-send-message icon-send-message" @click.prevent="sendMessage">
-            <SendIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
+            <button class="btn-send-message">送信する</button>
+            <!-- SendIcon :size="submitIconSize" :fill-color="colors.submitIcon"/-->
         </div>
         <div v-if="sendImages" class="container-send-message icon-send-message" @click="pickImage">
             <input ref="inputImage" :accept="acceptImageTypes" type="file" style="display: none;" @input="handleImageChange">
@@ -27,6 +28,11 @@
             ImageIcon
         },
         props: {
+            templateMessage: {
+                type: String,
+                required: false,
+                default: ''
+            },
             colors: {
                 type: Object,
                 required: true
@@ -66,6 +72,11 @@
         data() {
             return {
                 textInput: ''
+            }
+        },
+        watch: {
+            templateMessage() {
+                this.$refs.userInput.textContent = this.templateMessage;
             }
         },
         computed: {
@@ -129,6 +140,13 @@
 </script>
 
 <style lang="less">
+    .btn-send-message {
+        background-color: #E85549;
+        color: #fff;
+        border: 1px solid #E85549;
+        border-radius: 4px;
+        padding: 6px 12px;
+    }
     .quick-chat-container .container-message-manager {
         height: 65px;
         background: #fff;
@@ -189,7 +207,7 @@
 
         .icon-send-message {
             cursor: pointer;
-            opacity: 0.7;
+            opacity: 0.8;
             transition: 0.3s;
             border-radius: 11px;
             padding: 8px;

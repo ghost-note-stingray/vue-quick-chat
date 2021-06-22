@@ -6,6 +6,7 @@
                       :participants="participants"
                       :myself="myself"
                       :messages="messages"
+                      :templateMessage="templateMessage"
                       :chat-title="chatTitle"
                       :placeholder="placeholder"
                       :colors="colors"
@@ -31,6 +32,7 @@
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
+                    <button class="btn-message" @click="addMessageTemplate">Add menssage template</button>
                     <button class="btn-message" @click="addMessage">Add menssage</button>
                     <button class="btn-participant" @click="addParticipant">Add participant</button>
                     <button class="btn-participant" @click="changeAllProps">Change All Props</button>
@@ -57,6 +59,7 @@
         },
         data() {
             return {
+                templateMessage: "",
                 visible: true,
                 participants: [
                     {
@@ -255,6 +258,7 @@
                 * yet to the server you have to add the message into the array
                 */
                 this.messages.push(message);
+                this.templateMessage = "";
 
                 /*
                 * you can update message state after the server response
@@ -268,6 +272,9 @@
             onClose(param) {
                 console.log(param)
                 this.visible = false;
+            },
+            addMessageTemplate() {
+                this.templateMessage = "aaaaaaaa";
             },
             addMessage() {
                 /* this.messages.push(

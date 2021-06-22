@@ -11,7 +11,8 @@ export default () => {
             myself: {},
             participants: [],
             chatTitle: '',
-            placeholder: ''
+            placeholder: '',
+            templateMessage: ''
         },
         mutations: {
             newMessage: (state, message) => {
@@ -40,6 +41,9 @@ export default () => {
             },
             setPlaceholder: (state, placeholder) => {
                 state.placeholder = placeholder;
+            },
+            setTemplateMessage: (state, message) => {
+                state.templateMessage = message;
             }
         },
         actions: {},
